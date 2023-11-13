@@ -3,7 +3,7 @@ from django.views import generic
 from .models import Item
 # Create your views here.
 class MenuList(generic.ListView):
-    queryset = Item.object.order_by('date_created')
+    queryset = Item.objects.order_by('date_created')
     template_name = "index.html"
 
 class MenuItemDetail(generic.DetailView):
