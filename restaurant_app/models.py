@@ -3,13 +3,12 @@ from django.contrib.auth.models import User
 
 MEAL_TYPE= (
     ('starters','Starters'),
-    ('salads','Salads'),
     ('main_course', 'Main Course'), 
     ('desserts', 'Desserts'))
 
 STATUS = (
-    ("0","Unavailable"),
-    ("1","Available")
+    (0,"Unavailable"),
+    (1,"Available")
 )
 
 class Item(models.Model):
