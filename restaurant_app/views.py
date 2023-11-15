@@ -16,6 +16,8 @@ class MenuList(generic.ListView):
         
         return context
 
+# this class is send the Item class to the template_name 
 class MenuItemDetail(generic.DetailView):
+    
     model = Item
     template_name = 'menu_item_detail.html'

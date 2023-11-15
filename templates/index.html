@@ -13,8 +13,26 @@
                 {% for row in item_list  %}
                 {% comment %} this is checking that current meal type is same type {% endcomment %}
                     {% if row.meal_type == meal.0 %}
-                        <h2>{{ row.meal }}</h2>
-                        <h3>{{ row.description }}</h3>
+                    {% comment %} if the item is unavailable, it will cross out the items, and description disappear {% endcomment %}
+                        {% if row.status == 0 %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                            {% comment %} when it clicked it will render to the menu item page {% endcomment %}
+                            {% comment %} row.pk is primary key of the items {% endcomment %}
+                            <a href="{% url 'menu_item' row.pk %}"><h3><del>{{ row.meal }}</del></h3></a>
+                            <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
+                        </li>
+                        <li class="list-group-item pt-0">
+                            <p>{{ row.description }}</p>
+                        </li>
+                        {% else %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                            <a href="{% url 'menu_item' row.pk %}"><h3>{{ row.meal }}</h3></a>
+                            <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
+                        </li>
+                        <li class="list-group-item pt-0">
+                            <p>{{ row.description }}</p>
+                        </li>
+                        {% endif %}
                     {% endif %}
                     <p>{{ row.price }}</p>
                 {% endfor %}
