@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang='en'>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>Restaurant Menu</h1>
-            {% comment %} using Jinja For loop {% endcomment %}
-            {% for meal in meals %}
-                <h2>{{meal.1}}</h2>
-                {% comment %} item_list is from the class Items, Jinja is looking typically list {% endcomment %}
-                {% for row in item_list  %}
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h1>Restaurant Menu</h1>
+    <ul class="list-group list-group-flush">
+        {% comment %} using Jinja For loop {% endcomment %}
+        {% for meal in meals %}
+            <h2 class="pt-5">{{ meal.1 }}</h2>
+                {% for row in item_list %}
                 {% comment %} this is checking that current meal type is same type {% endcomment %}
                     {% if row.meal_type == meal.0 %}
                     {% comment %} if the item is unavailable, it will cross out the items, and description disappear {% endcomment %}
+
                         {% if row.status == 0 %}
                         <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
                             {% comment %} when it clicked it will render to the menu item page {% endcomment %}
@@ -34,8 +31,8 @@
                         </li>
                         {% endif %}
                     {% endif %}
-                    <p>{{ row.price }}</p>
                 {% endfor %}
-            {% endfor %}
-    </body>
-</html>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
