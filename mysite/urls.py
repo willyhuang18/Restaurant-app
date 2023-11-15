@@ -19,5 +19,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # the empty string means that that's like the top subdirectory, the top URL subdirectory.
     path('', include('restaurant_app.urls'))
 ]

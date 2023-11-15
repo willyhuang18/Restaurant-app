@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Item, MEAL_TYPE
-# Create your views here.
+# created two class-based views.
+#  the page will be represented by the MenuList class ListView
 class MenuList(generic.ListView):
     queryset = Item.objects.order_by('date_created')
     template_name = "index.html"
@@ -15,9 +16,10 @@ class MenuList(generic.ListView):
         context['meals'] = MEAL_TYPE
         
         return context
-
+    
+#  the page will be represented by the MenuList class DetailView
 # this class is send the Item class to the template_name 
-class MenuItemDetail(generic.DetailView):
+class MenuItemDetail(generic.View):
     
     model = Item
     template_name = 'menu_item_detail.html'
