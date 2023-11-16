@@ -19,7 +19,7 @@ class MenuList(generic.ListView):
     
 #  the page will be represented by the MenuList class DetailView
 # this class is send the Item class to the template_name 
-class MenuItemDetail(generic.View):
+class MenuItemDetail(generic.DetailView):
     
     model = Item
     template_name = 'menu_item_detail.html'
