@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.db.models import Q
 from .models import Item, MEAL_TYPE,Review
 from .form import ReviewForm
 # created two class-based views.
@@ -17,6 +18,15 @@ class MenuList(generic.ListView):
         context['meals'] = MEAL_TYPE
         context['reviews'] = Review.objects.all()
         return context
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Item.objects.filter(
+                Q(meal__icontains=query) |
+                Q(description__icontains=query)
+            ).order_by('date_created')
+        else:
+            return Item.objects.order_by('date_created')
     
 #  the page will be represented by the MenuList class DetailView
 # this class is send the Item class to the template_name 

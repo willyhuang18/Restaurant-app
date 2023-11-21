@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-  <h1>Restaurant Menu</h1>
+    <h1 class="my-4 text-center">Restaurant Menu</h1>
+    <form method="get" action="{% url 'home' %}" class="form-inline d-flex justify-content-center my-4">
+      <input class="form-control mr-sm-2 w-25" type="search" name="q" placeholder="Search meals..." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <ul class="list-group list-group-flush">
         {% comment %} using Jinja For loop {% endcomment %}
         {% for meal in meals %}
