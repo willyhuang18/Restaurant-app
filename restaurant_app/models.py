@@ -30,6 +30,13 @@ class Item(models.Model):
     status = models.IntegerField(choices=STATUS, default = 1)
     date_created= models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    # image = models.ImageField(upload_to='menu_images/', blank=True, null=True)
     
     def __str__(self):
         return self.meal
+    
+class Review(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()

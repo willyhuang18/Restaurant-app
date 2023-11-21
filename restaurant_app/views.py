@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Item, MEAL_TYPE
+from .models import Item, MEAL_TYPE,Review
 # created two class-based views.
 #  the page will be represented by the MenuList class ListView
 class MenuList(generic.ListView):
@@ -14,7 +14,7 @@ class MenuList(generic.ListView):
         # this will be a dictionary,
         context = super().get_context_data(**kwargs)
         context['meals'] = MEAL_TYPE
-        
+        context['reviews'] = Review.objects.all()
         return context
     
 #  the page will be represented by the MenuList class DetailView

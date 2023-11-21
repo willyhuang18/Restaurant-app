@@ -32,6 +32,13 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+            <h3>Reviews:</h3>
+            {% for review in reviews %}
+                {% if review.item == meal %}
+                    <p>{{ review.user.username }} rated this meal {{ review.rating }} out of 5</p>
+                    <p>{{ review.comment }}</p>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </ul>
 </div>
