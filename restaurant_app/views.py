@@ -18,14 +18,19 @@ class MenuList(generic.ListView):
         context['meals'] = MEAL_TYPE
         context['reviews'] = Review.objects.all()
         return context
+    # This function is used to get the queryset for your ListView based on the search query
     def get_queryset(self):
+        # Get the search query from the GET parameters
         query = self.request.GET.get('q')
+        # If a query is provided, filter the items based on the query
         if query:
             return Item.objects.filter(
+                # Return items where the meal name or description contains the query
                 Q(meal__icontains=query) |
                 Q(description__icontains=query)
             ).order_by('date_created')
         else:
+            # If no query is provided, return all items
             return Item.objects.order_by('date_created')
     
 #  the page will be represented by the MenuList class DetailView
@@ -35,14 +40,17 @@ class MenuItemDetail(generic.DetailView):
     model = Item
     template_name = 'menu_item_detail.html'
     
+    # Override the get_context_data method to add the review form to the context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ReviewForm()
         return context
 
+    # Override the post method to handle form submissions
     def post(self, request, *args, **kwargs):
         form = ReviewForm(request.POST)
         if form.is_valid():
+            # If the form is valid, save the review and associate it with the current item and user
             review = form.save(commit=False)
             review.item = self.get_object()
             review.user = request.user

@@ -36,7 +36,9 @@ class Item(models.Model):
         return self.meal
     
 class Review(models.Model):
+    # Each review is associated with an item and a user
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Each review has a rating and a comment
     rating = models.IntegerField()
     comment = models.TextField()
