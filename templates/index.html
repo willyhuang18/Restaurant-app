@@ -6,37 +6,30 @@
         {% comment %} using Jinja For loop {% endcomment %}
         {% for meal in meals %}
             <h2 class="pt-5">{{ meal.1 }}</h2>
-                {% for row in item_list %}
-                {% comment %} this is checking that current meal type is same type {% endcomment %}
-                    {% if row.meal_type == meal.0 %}
-                    {% comment %} if the item is unavailable, it will cross out the items, and description disappear {% endcomment %}
+            {% for row in item_list %}
+            {% comment %} this is checking that current meal type is same type {% endcomment %}
+                {% if row.meal_type == meal.0 %}
+                {% comment %} if the item is unavailable, it will cross out the items, and description disappear {% endcomment %}
 
-                        {% if row.status == 0 %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
-                            {% comment %} when it clicked it will render to the menu item page {% endcomment %}
-                            {% comment %} row.pk is primary key of the items {% endcomment %}
-                            <a href="{% url 'menu_item' row.pk %}"><h3><del>{{ row.meal }}</del></h3></a>
-                            <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
-                        </li>
-                        <li class="list-group-item pt-0">
-                            <p>{{ row.description }}</p>
-                        </li>
-                        {% else %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
-                            <a href="{% url 'menu_item' row.pk %}"><h3>{{ row.meal }}</h3></a>
-                            <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
-                        </li>
-                        <li class="list-group-item pt-0">
-                            <p>{{ row.description }}</p>
-                        </li>
-                        {% endif %}
+                    {% if row.status == 0 %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                        {% comment %} when it clicked it will render to the menu item page {% endcomment %}
+                        {% comment %} row.pk is primary key of the items {% endcomment %}
+                        <a href="{% url 'menu_item' row.pk %}"><h3><del>{{ row.meal }}</del></h3></a>
+                        <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
+                    </li>
+                    <li class="list-group-item pt-0">
+                        <p>{{ row.description }}</p>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                        <a href="{% url 'menu_item' row.pk %}"><h3>{{ row.meal }}</h3></a>
+                        <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
+                    </li>
+                    <li class="list-group-item pt-0">
+                        <p>{{ row.description }}</p>
+                    </li>
                     {% endif %}
-                {% endfor %}
-            <h3>Reviews:</h3>
-            {% for review in reviews %}
-                {% if review.item == meal %}
-                    <p>{{ review.user.username }} rated this meal {{ review.rating }} out of 5</p>
-                    <p>{{ review.comment }}</p>
                 {% endif %}
             {% endfor %}
         {% endfor %}
