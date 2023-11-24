@@ -1,3 +1,5 @@
+#PangTa Huang
+#11/18/2023
 from django.db import models
 # importing user class from django
 from django.contrib.auth.models import User
