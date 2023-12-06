@@ -28,7 +28,7 @@
                             </li>
                         {% else %}
                             <li class="list-group-item d-flex justify-content-between align-items-center border rounded pb-0 mb-3" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#F8F9FA';" onmouseout="this.style.backgroundColor='white';">
-                                <a href="{% url 'menu_item' row.pk %}" class="stretched-link"><h3>{{ row.meal }}</h3></a>
+                                <a href="{% url 'menu_item' row.pk %}" class="stretched-link" style="text-decoration:none; color:black"><h3>{{ row.meal }}</h3></a>
                                 <span class="badge bg-primary rounded-pill">{{ row.price }}</span>
                             </li>
                         {% endif %}

@@ -5,23 +5,28 @@
 {% endcomment %}
 {% block content %}
     <div class="container">
+        <!-- Displaying the meal details -->
         <h1 class="pt-5">{{ item.meal }}</h1>
         <p>{{ item.description }}</p>
         <p>{{ item.price }}</p>
+
+        <!-- Form for submitting a review -->
         <h2>Submit a review:</h2>
         <form method="post" class="mb-3">
           {% csrf_token %}
           <div class="mb-3">
             <label for="rating" class="form-label">Rating</label>
-            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+            <input type="number" class="form-control" style="width:20%" id="rating" name="rating" min="1" max="5" required>
           </div>
           <div class="mb-3">
             <label for="comment" class="form-label">Comment</label>
-            <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+            <!-- Reduced the textarea rows to 2 to make the form smaller -->
+            <textarea class="form-control" id="comment" name="comment" rows="2" style="width:70%" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit review</button>
         </form>
-      
+
+        <!-- Displaying the reviews -->
         <h2>Reviews:</h2>
         {% for review in item.review_set.all %}
           <div class="card mb-3">
