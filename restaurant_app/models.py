@@ -13,7 +13,9 @@ from django.contrib.auth.models import User
 MEAL_TYPE= (
     ('starters','Starters'),
     ('main_course', 'Main Course'), 
-    ('desserts', 'Desserts'))
+    ('desserts', 'Desserts'),
+    ('drink', 'Drink'))
+
 
 STATUS = (
     (0,"Unavailable"),
